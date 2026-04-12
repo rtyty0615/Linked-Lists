@@ -22,16 +22,24 @@ class LinkedList {
             current = current.nextNode
         };
         current.nextNode = newNode
+    };
+
+    prepend(value) {
+        const newNode = new Node(value);
+        if (this.head === null) {
+            this.head = newNode;
+            return
+        };
+        newNode.nextNode = this.head;
+        this.head = newNode
     }
+    
 }
 
 const list = new LinkedList();
 
 list.append("dog");
 
-    // prepend(value) {
-    //     const newNode = new Node(value, nextNode);
-    //     this.list.push(newNode);
-    // }
+    
     
 
