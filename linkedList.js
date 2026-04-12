@@ -69,11 +69,31 @@ class LinkedList {
         };
     }
 
-    
+    at(index) {
+        let current = this.head;
+        if (current === null) {
+            return undefined
+        };
+        if (index === 0) {
+            return current.value
+        };
+        for (let i = 0; i < index; i++) {
+            current = current.nextNode;
+            if (current === null) {
+                return undefined
+            };
+        }
+        return current.value;
+    }
 
-
-
-
+    pop() {
+        if (this.head === null) {
+            return undefined
+        };
+        const headValue = this.head.value;
+        this.head = this.head.nextNode;
+        return headValue
+    }
 
 }
 
@@ -90,6 +110,10 @@ list.append("turtle");
 console.log(list.size())
 console.log(list.getHead())
 console.log(list.getTail())
+console.log(list.at(5))
+console.log(list.pop())
+console.log(list.getHead())
+console.log(list.size())
 
     
     
