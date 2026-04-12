@@ -23,7 +23,7 @@ class LinkedList {
             current = current.nextNode
         };
         current.nextNode = newNode
-    };
+    }
 
     prepend(value) {
         const newNode = new Node(value);
@@ -35,7 +35,7 @@ class LinkedList {
         this.head = newNode
     }
 
-    size(){
+    size() {
         let current = this.head;
         let count = 0;
         if (current === null) {
@@ -48,6 +48,33 @@ class LinkedList {
         };
         return count
     }
+
+    getHead() {
+        if (this.head === null) {
+            return undefined
+        };
+        return this.head.value
+    }
+
+    getTail() {
+        if (this.head === null) {
+            return undefined
+        };
+        let current = this.head;
+        while (current.nextNode) {
+            current = current.nextNode;
+        };
+        if (current.nextNode === null) {
+            return current.value
+        };
+    }
+
+    
+
+
+
+
+
 }
 
 const list = new LinkedList();
@@ -61,6 +88,8 @@ list.append("turtle");
 
 
 console.log(list.size())
+console.log(list.getHead())
+console.log(list.getTail())
 
     
     
