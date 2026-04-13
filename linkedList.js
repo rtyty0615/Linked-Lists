@@ -170,17 +170,35 @@ class LinkedList {
             for (const input of inputs) {
                 const newNode = new Node(input);
                 if (count === 0) {
-                    this.head = newNode;
+                    this.head = newNode; // the real this.head must be updated, not just temporary reference
                     saveCurrent = newNode;
                     count += 1;
                 } else {
                     saveCurrent.nextNode = newNode;
                     saveCurrent = saveCurrent.nextNode;
                 }
-                
             }
             saveCurrent.nextNode = current
         };
+    }
+
+    removeAt(index) {
+        let current = this.head;
+        let saveCurrent = current;
+        if (index < 0) {
+            return console.log(RangeError)
+        } else if (index === 0) {
+            this.head = this.head.nextNode;
+        } else {
+            for (let i = 0; i < index; i++) {
+                saveCurrent = current;
+                current = current.nextNode;
+                if (current === null) {
+                    return console.log(RangeError)
+                };
+            };
+            saveCurrent.nextNode = current.nextNode;
+        }
     }
 
 }
@@ -199,6 +217,9 @@ console.log(list.toString())
 list.insertAt(2, 1, "ray")
 console.log(list.toString());
 
+
+list.removeAt(1)
+console.log(list.toString());
 
     
     
