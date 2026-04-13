@@ -145,6 +145,44 @@ class LinkedList {
         return listString += "null"
     }
 
+    insertAt(index, ...inputs){
+        let current = this.head;
+        let saveCurrent = current;
+        if (index < 0) {
+            return console.log(RangeError)
+        } else if (index > 0) {
+            for (let i = 0; i < index; i++) {
+                saveCurrent = current;
+                current = current.nextNode;
+                if (current === null) {
+                    return console.log(RangeError)
+                };
+            };
+
+            for (const input of inputs) {
+                const newNode = new Node(input);
+                saveCurrent.nextNode = newNode;
+                saveCurrent = saveCurrent.nextNode;
+            }
+            saveCurrent.nextNode = current
+        } else {
+            let count = 0;
+            for (const input of inputs) {
+                const newNode = new Node(input);
+                if (count === 0) {
+                    this.head = newNode;
+                    saveCurrent = newNode;
+                    count += 1;
+                } else {
+                    saveCurrent.nextNode = newNode;
+                    saveCurrent = saveCurrent.nextNode;
+                }
+                
+            }
+            saveCurrent.nextNode = current
+        };
+    }
+
 }
 
 const list = new LinkedList();
@@ -156,18 +194,10 @@ list.append("hamster");
 list.append("snake");
 list.append("turtle");
 
-
-// console.log(list.size())
-// console.log(list.getHead())
-// console.log(list.getTail())
-// console.log(list.at(5))
-// console.log(list.pop())
-// console.log(list.getHead())
-// console.log(list.size())
-
-console.log(list.contains("turtle"))
-console.log(list.findIndex("parrot"))
 console.log(list.toString())
+
+list.insertAt(2, 1, "ray")
+console.log(list.toString());
 
 
     
